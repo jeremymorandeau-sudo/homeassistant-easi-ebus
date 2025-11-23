@@ -1,0 +1,20 @@
+{
+  "configuration": {
+    "ebusd_host": {
+      "name": "Adresse IP du dispositif easi>",
+      "description": "L'adresse IP de votre dispositif easi> sur le réseau local"
+    },
+    "ebusd_port": {
+      "name": "Port de l'API",
+      "description": "Port de l'API micro-ebusd (généralement 8080)"
+    },
+    "scan_interval": {
+      "name": "Intervalle de mise à jour",
+      "description": "Fréquence de mise à jour des données en secondes (10-300)"
+    },
+    "entities": {
+      "name": "Entités à créer",
+      "description": "Liste des entités eBUS à créer dans Home Assistant"
+    }
+  }
+}
