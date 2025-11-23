@@ -15,7 +15,6 @@ boot: auto
 hassio_api: true
 hassio_role: default
 host_network: true
-image: "ghcr.io/jeremymorandeau-sudo/easi-ebus-{arch}"
 
 options:
   ebusd_host: "192.168.0.26"
