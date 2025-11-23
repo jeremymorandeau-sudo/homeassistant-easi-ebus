@@ -1,0 +1,50 @@
+name: "easi> eBUS Integration"
+version: "1.0.0"
+slug: easi_ebus
+description: "Intégration complète de votre système easi> eBUS dans Home Assistant"
+url: "https://github.com/VOTRE_USERNAME/homeassistant-easi-ebus"
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+init: false
+startup: application
+boot: auto
+hassio_api: true
+hassio_role: default
+host_network: true
+image: "ghcr.io/VOTRE_USERNAME/easi-ebus-{arch}"
+
+options:
+  ebusd_host: "192.168.0.26"
+  ebusd_port: 8080
+  scan_interval: 30
+  entities:
+    - name: "Température départ"
+      circuit: "heating"
+      message: "Temp"
+      unit: "°C"
+      device_class: "temperature"
+    - name: "Température retour"
+      circuit: "heating"
+      message: "ReturnTemp"
+      unit: "°C"
+      device_class: "temperature"
+    - name: "Pression circuit"
+      circuit: "heating"
+      message: "Pressure"
+      unit: "bar"
+      device_class: "pressure"
+
+schema:
+  ebusd_host: str
+  ebusd_port: port
+  scan_interval: int(10,300)
+  entities:
+    - name: str
+      circuit: str
+      message: str
+      unit: str?
+      device_class: str?
