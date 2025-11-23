@@ -2,7 +2,7 @@ name: "easi> eBUS Integration"
 version: "1.0.0"
 slug: easi_ebus
 description: "Intégration complète de votre système easi> eBUS dans Home Assistant"
-url: "https://github.com/VOTRE_USERNAME/homeassistant-easi-ebus"
+url: "https://github.com/jeremymorandeau-sudo/homeassistant-easi-ebus"
 arch:
   - aarch64
   - amd64
@@ -15,7 +15,7 @@ boot: auto
 hassio_api: true
 hassio_role: default
 host_network: true
-image: "ghcr.io/VOTRE_USERNAME/easi-ebus-{arch}"
+image: "ghcr.io/jeremymorandeau-sudo/easi-ebus-{arch}"
 
 options:
   ebusd_host: "192.168.0.26"
