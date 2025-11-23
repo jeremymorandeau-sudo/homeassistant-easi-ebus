@@ -8,6 +8,7 @@ import json
 import logging
 import time
 import sys
+import os
 import requests
 from typing import Dict, List, Optional
 import paho.mqtt.client as mqtt
@@ -65,10 +66,16 @@ class EBusClient:
 class HomeAssistantMQTT:
     """Gestion de la communication MQTT avec Home Assistant"""
     
-    def __init__(self, broker: str = "core-mosquitto", port: int = 1883):
+    def __init__(self, broker: str = "core-mosquitto", port: int = 1883, username: str = None, password: str = None):
         self.broker = broker
         self.port = port
         self.client = mqtt.Client()
+        
+        # Ajouter l'authentification si fournie
+        if username and password:
+            self.client.username_pw_set(username, password)
+            logger.info(f"Authentification MQTT configurée pour l'utilisateur: {username}")
+        
         self.client.on_connect = self.on_connect
         self.client.on_disconnect = self.on_disconnect
         self.connected = False
@@ -156,7 +163,12 @@ class EBusIntegration:
     def __init__(self, config: Dict):
         self.config = config
         self.ebus = EBusClient(config['ebusd_host'], config['ebusd_port'])
-        self.mqtt = HomeAssistantMQTT()
+        
+        # Récupérer les identifiants MQTT depuis les variables d'environnement ou la config
+        mqtt_user = os.getenv('MQTT_USER', 'jeremy')
+        mqtt_pass = os.getenv('MQTT_PASS', '123456')
+        
+        self.mqtt = HomeAssistantMQTT(username=mqtt_user, password=mqtt_pass)
         self.scan_interval = config.get('scan_interval', 30)
         
     def setup(self):
